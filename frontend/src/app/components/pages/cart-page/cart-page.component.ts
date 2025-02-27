@@ -9,25 +9,23 @@ import { Cart } from 'src/app/shared/models/Carts';
   styleUrls: ['./cart-page.component.css']
 })
 export class CartPageComponent implements OnInit {
+  cart!: Cart;
+  constructor(private cartService: CartService) {
+    this.cartService.getCartObservable().subscribe((cart) => {
+      this.cart = cart;
+    })
+  }
 
-  cart!:Cart;
-constructor(private cartService:CartService){
-  this.cartService.getCartObservable().subscribe((cart)=>{
-    this.cart = cart
-  })
-}
+  ngOnInit(): void {
+  }
 
+  removeFromCart(cartItem:CartItem){
+    this.cartService.removeFromCart(cartItem.food.id);
+  }
 
+  changeQuantity(cartItem:CartItem,quantityInString:string){
+    const quantity = parseInt(quantityInString);
+    this.cartService.changeQuantity(cartItem.food.id, quantity);
+  }
 
-ngOnInit(): void {
-
-}
-removeFromCart(cartItem:CartItem){
-  this.cartService.removeFromCart(cartItem.food.id)
-}
-
-changeQuantity(cartItem:CartItem , quantityInString:string){
-const quantity = parseInt(quantityInString);
-this.cartService.changeQuantity(cartItem.food.id , quantity)
-}
 }
