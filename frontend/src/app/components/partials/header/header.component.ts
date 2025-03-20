@@ -25,10 +25,10 @@ constructor(cartService:CartService , private userService : UserService){
 
 }
 
-logout(){
-  this.userService.logout()
-}
-get isAuth(){
-  return this.user.token
-}
+  logout(){
+    this.userService.logout()
+  }
+  get isAuth(){
+    return this.user.token
+  }
 }

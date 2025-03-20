@@ -48,7 +48,7 @@ public userObservable:Observable<User>;
   }
   private getUserFromLocalStorage():User{
     const UserJson = localStorage.getItem(USER_KEY)
-    if(UserJson) return JSON.parse(UserJson) as User
-    return new User()
+    if(UserJson) return JSON.parse(UserJson) as User;
+    return new User();
   }
 }
